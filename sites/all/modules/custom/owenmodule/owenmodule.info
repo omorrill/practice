@@ -1,0 +1,4 @@
+name = Owen Module
+description = Just testing
+core = 7.x
+package = Owen
