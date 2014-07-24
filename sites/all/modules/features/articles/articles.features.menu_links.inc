@@ -8,6 +8,7 @@
  * Implements hook_menu_default_menu_links().
  */
 function articles_menu_default_menu_links() {
+  $menu_links = array();
 
   // Exported menu link: navigation_article:node/add/article
   $menu_links['navigation_article:node/add/article'] = array(
