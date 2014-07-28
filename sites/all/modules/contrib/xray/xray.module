@@ -8,16 +8,14 @@
  * Implements hook_form_alter().
  */
 function xray_form_alter(&$form, &$form_state, $form_id) {
-  if (variable_get('xray_show_formid', TRUE) && user_access('view xray messages')) {
-    $form['xray_display_form_id'] = array(
-      '#type' => 'item',
-      '#theme_wrappers' => array('container__xray__form'),
-      '#attributes' => array('class' => array('xray')),
-      '#title' => 'Form ID',
-      '#markup' => $form_id,
-      '#weight' => -100,
-    );
-  }
+  $form['xray_display_form_id'] = array(
+    '#type' => 'item',
+    '#theme_wrappers' => array('container__xray__form'),
+    '#attributes' => array('class' => array('xray')),
+    '#title' => 'Form ID',
+    '#markup' => $form_id,
+    '#weight' => -100,
+  );
 }
 
 /**
@@ -92,32 +90,7 @@ function xray_menu() {
     'weight' => 20,
     'access arguments' => array('access site reports'),
   );
-  $items['admin/config/development/xray'] = array(
-    'title' => 'X-ray configuration',
-	'description' => 'Configure which elements of internal site structure will be shown.',
-	'page callback' => 'drupal_get_form',
-	'page arguments' => array('xray_admin_settings'),
-	'file' => 'xray.admin.inc',
-	'access arguments' => array('administer xray'),
-	'weight' => 0,
-  );
   return $items;
-}
-
-/**
- * Implments hook_permission().
- */
-function xray_permission() {
-  return array(
-    'view xray messages' => array(
-	  'title' => t('View X-ray messages'),
-	  'description' => t('Allows users to see X-ray output.'),
-	),
-	'administer xray' => array(
-	  'title' => t('Administer X-ray'),
-	  'description' => t('Allows administrators to configure which X-ray messages are shown.'),
-	),
-  );
 }
 
 /**
